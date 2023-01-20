@@ -41,9 +41,18 @@ const TRIGGERS = [
 ];
 
 function onDispatch() {
-	const unObserve = observeDom("pre:not(.shiki) > code", (elem) => {
+	/*const unObserve = observeDom("pre:not(.shiki) > code", (elem) => {
 		unObserve();
-		injectCodeblock(elem);
+		i
+		njectCodeblock(elem);
+	});*/
+	//const unObserve = observeDom(".messageContent-2t3eCI > .anchor-1MIwyf", (elem) => {
+	const unObserve = observeDom("a", (elem) => {
+		unObserve();
+		if (elem.className.includes("anchor")) {
+			console.log("link detected", elem);
+			injectCodeblock(elem);
+		}
 	});
 
 	setTimeout(unObserve, 500);
